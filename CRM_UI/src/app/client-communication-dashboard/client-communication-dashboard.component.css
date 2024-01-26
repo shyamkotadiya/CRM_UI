@@ -1,0 +1,52 @@
+.dashboardSpace {
+    margin-left: 3%;
+    height: 100%;
+    width: 100%;
+}
+
+.dashboardPillar {
+    float: left;
+    width: 20%;
+    height: 90%;
+    border: 1px solid black;
+    margin: 1%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.dashboardPillar hr{
+    border: 1px solid black;
+}
+
+.pillarHeader{
+    margin-top: 2%;
+}
+
+.pillarBody{
+    height: 100%;
+    width: 100%;
+}
+
+.pillarCard{
+    height: 15%;
+    width: 80%;
+    margin: 10%;
+    border: 1px solid black;
+    border-radius: 10px;
+    position: relative;
+}
+
+#div1, #div2 {
+    float: left;
+    width: 100px;
+    height: 35px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.pillarCardRightArrow{
+    float: right;
+    margin-top: 0px;
+    cursor: pointer;
+}

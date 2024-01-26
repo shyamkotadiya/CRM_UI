@@ -1,0 +1,37 @@
+<div class="navMenu">
+    <div class="navLogo"></div>
+    <div class="navMenuSection">
+        <div class="navMenuItem" (click)="clickOnLink('home')">
+            <mat-icon class="inlineBlocks">home</mat-icon>
+            <a class="navMenuLink" href="javascript:void(0)">Home</a>
+        </div>
+        <div class="navMenuItem" (mouseenter)="mouseAction('clientLead',$event,'onHover')"
+            (mouseleave)="mouseAction('clientLead',$event,'onLeave')">
+            <mat-icon class="inlineBlocks">person</mat-icon>
+            <a class="navMenuLink" href="javascript:void(0)">Client Lead</a>
+            <mat-icon class="inlineBlocks clientDownArrowClass">keyboard_arrow_down</mat-icon>
+            <mat-icon class="inlineBlocks clientUpArrowClass">keyboard_arrow_up</mat-icon><br>
+
+            <div class="subMenu clientSubMenu" style="display: none;">
+                <div class="p-t-2 p-b-12"><a class="navMenuLink" href="javascript:void(0)" (click)="clickOnLink('createLead')">Create Client Lead</a></div><br>
+                <div class="p-t-2 p-b-12"><a class="navMenuLink" href="javascript:void(0)" (click)="clickOnLink('searchLead')">Search Client Lead</a></div>
+            </div>
+        </div>
+        <div class="navMenuItem" (mouseenter)="mouseAction('dashboard',$event,'onHover')"
+        (mouseleave)="mouseAction('dashboard',$event,'onLeave')">
+            <mat-icon class="inlineBlocks">dashboard</mat-icon>
+            <a class="navMenuLink" href="javascript:void(0)">Dashboard</a>
+            <mat-icon class="inlineBlocks dashboardDownArrowClass">keyboard_arrow_down</mat-icon> 
+            <mat-icon class="inlineBlocks dashboardUpArrowClass">keyboard_arrow_up</mat-icon><br>
+
+            <div class="subMenu dashboardSubMenu" style="display: none;">
+                <div class="p-t-2 p-b-12"><a class="navMenuLink navMenuItem" title="Client Communication Dashboard" href="javascript:void(0)">Client Communication Dashboard</a></div><br>
+                <div class="p-t-2 p-b-12"><a class="navMenuLink" href="javascript:void(0)">Design Dashboard</a></div>
+            </div>
+        </div>
+        <div class="navMenuItem" (click)="clickOnLink('aboutUs')">
+            <mat-icon class="inlineBlocks">tag_faces</mat-icon>
+            <a class="navMenuLink" href="javascript:void(0)">About Us</a>
+        </div>
+    </div>
+</div>

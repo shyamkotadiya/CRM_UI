@@ -1,0 +1,1 @@
+ng s -o --hmr && pause;

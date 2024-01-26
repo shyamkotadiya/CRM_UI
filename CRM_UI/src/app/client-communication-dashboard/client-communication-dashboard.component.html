@@ -1,0 +1,44 @@
+<div class="withLeftSide">
+    <div class="headerSection">
+        <div class="headerTitleSection">Client Communication Dashboard</div>
+    </div>
+    <div class="workArea">
+        <div class="dashboardSpace">
+            <!--     <div class="dashboardPillar">
+                <div class="pillarHeader">
+                    <label>Open</label>
+                </div>
+                <hr>
+            </div>
+            <div class="dashboardPillar">
+                <div class="pillarHeader">
+                    <label>In-Progress</label>
+                </div>
+                <hr>
+            </div>
+            <div class="dashboardPillar">
+                <div class="pillarHeader">
+                    <label>Done</label>
+                </div>
+                <hr>
+            </div> -->
+            <!-- <ng-component *ngFor="let i of tempArray"> -->
+            <div *ngFor="let i of tempArray;let perI = index" class="dashboardPillar">
+                <div class="pillarHeader">
+                    <label>{{i}}-</label>
+                </div>
+                <hr>
+                <div class="pillarBody">
+                    <div class="pillarCard pillarCard{{perI}} pillarCard{{perI}}{{childI}}"
+                        *ngFor="let i of tempArray;let childI = index">
+                        <div (click)="changePosition()" class="pillarCardRightArrow">
+                            <mat-icon>arrow_right_alt</mat-icon>
+                        </div>
+                        1{{perI}}{{childI}}
+                    </div>
+                </div>
+            </div>
+            <!-- </ng-component> -->
+        </div>
+    </div>
+</div>

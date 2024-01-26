@@ -1,0 +1,33 @@
+<div class="fullScreen">
+    <div class="m-l-35 m-t-5 width75 height75 loginBox">
+        <div class="titleHeader"> Welcome to CRM Portal</div>
+        <div [formGroup]="loginForm" class="loginSection">
+            <div class="loginAccountIconDiv">
+                <mat-icon class="loginAccountIcon">account_circle</mat-icon>
+            </div>
+            <div class="elementDiv">
+                <label for="UserName">UserName</label>
+                <div class="w-65">
+                    <app-common-element dataUI="text" for="userName"
+                    [formControlNameRef]="loginForm.get('userName')"></app-common-element><br>
+                </div>
+            </div>
+            <div class="elementDiv">
+                <label for="Password">Password</label>
+                <div class="w-65">
+                    <app-common-element dataUI="password" for="password"
+                    [formControlNameRef]="loginForm.get('password')"></app-common-element>
+                </div>
+            </div>
+            <div class="m-t-2 m-l-15">
+                <div (click)='forgotPass()'><a href="#voidscript(0)">Forgot Password?</a></div>
+            </div>
+            <div>
+                <div >
+                    <mat-icon (click)="onClick('login')" class="loginRightTick">check_circle</mat-icon>
+                    <mat-icon (click)="onClick('cancel')" class="cancleCloseTick" >add_circle</mat-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

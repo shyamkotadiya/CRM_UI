@@ -1,0 +1,165 @@
+<div class="withLeftSide">
+    <div class="headerSection">
+        <div class="headerTitleSection">Create Client Lead</div>
+    </div>
+    <div class="workArea">
+        <form [formGroup]="clientForm" class="formSection">
+            <div class="row">
+                <div class="clientFormElement">
+                    <div>
+                        <mat-icon class="h-21px">person</mat-icon>
+                        <label for="UserName">First Name</label>
+                        <span class="mandatory"></span>
+                    </div>
+                    <div class="max-HeightWidth">
+                        <!-- MUST Use any uniq class for validation effact -->
+                        <!-- <input [(ngModel)]="lead.fname" type="text" class="elementClass active" id="for" name="for"
+                    [ngModelOptions]="{standalone: true}" placeholder="hello" ngformControlName="fname" ><br> -->
+                        <app-common-element class="fname" validators [type]="notNullValidator" [value]="lead.fname"
+                            [(ngModel)]="lead.fname" dataUI="text" for="fname" required name="fname" id="fname"
+                            ngDefaultControl [formControlNameRef]="clientForm.get('fname')" (ngModelChange)="ngModelChange()">
+                        </app-common-element><br>
+                    </div>
+                </div>
+                <div class="clientFormElement">
+                    <div>
+                        <mat-icon class="h-21px">person</mat-icon>
+                        <label for="LastName">Last Name</label>
+                    </div>
+                    <div class="max-HeightWidth">
+                        <app-common-element class="lname" validators [type]="notNullValidator" dataUI="text"
+                            for="lastName" required id="lname" [(ngModel)]="lead.lname" [value]="lead.lname"
+                            name="lname" id="lname" [formControlNameRef]="clientForm.get('lname')">
+                        </app-common-element><br>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="clientFormElement">
+
+                    <div>
+                        <mat-icon class="h-21px"> phone</mat-icon>
+                        <label for="ContactNo">Contact No</label>
+                        <span class="mandatory"></span>
+                    </div>
+                    <div class="max-HeightWidth">
+                        <app-common-element class="phoneNo" validators [type]="numberLimit10"
+                            [value]="lead.contactNo" [(ngModel)]="lead.contactNo" dataUI="number"
+                            for="contactNo" required id="contactNo" ngDefaultControl [formControlNameRef]="clientForm.get('contactNo')"
+                            name="contactNo" (ngModelChange)="ngModelChange()">
+                        </app-common-element><br>
+                    </div>
+                </div>
+                <div class="clientFormElement">
+                    <div>
+                        <mat-icon class="h-21px"> email</mat-icon>
+                        <label for="Email">Email Address</label>
+                    </div>
+                    <div class="max-HeightWidth">
+                        <app-common-element dataUI="text" for="email" id="email" required class="email" validators
+                            [type]="notNullValidator" [value]="lead.email" [(ngModel)]="lead.email"
+                            name="email" ngDefaultControl [formControlNameRef]="clientForm.get('email')"></app-common-element><br>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- use different Class compare to other because of coustom implementation of select box
+            NOTE:- MUST USE BELOW CLASS FOR DROP DOWN -->
+                <div class="clientFormSelectElement">
+                    <div>
+                        <mat-icon class="h-21px">gps_fixed</mat-icon>
+                        <label for="country">Country</label>
+                        <span class="mandatory"></span>
+                    </div>
+                    <div class="max-HeightWidth">
+                        <app-common-element dataUI="select" for="country" required id="country" name="country"
+                            ngDefaultControl [(ngModel)]="lead.country" [formControlNameRef]="clientForm.get('country')"
+                            (ngModelChange)="ngModelChange()" required [options]='countryOptions'></app-common-element>
+                        <br>
+                    </div>
+                </div>
+                <div class="clientFormSelectElement padding-left10">
+                    <div>
+                        <mat-icon class="h-21px">gps_fixed</mat-icon>
+                        <label for="state">State</label>
+                        <span class="mandatory"></span>
+                    </div>
+                    <div class="max-HeightWidth">
+                        <app-common-element dataUI="select" for="state" required id="state" name="state"
+                            ngDefaultControl [(ngModel)]="lead.state" [formControlNameRef]="clientForm.get('state')"
+                            (ngModelChange)="ngModelChange()" required [options]='stateOptions'></app-common-element>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- After DropDown Needed padding used, other wise not set elements in certen line-->
+                <div class="clientFormElement">
+                    <div>
+                        <mat-icon class="h-21px">location_on</mat-icon>
+                        <label for="Email">City</label>
+                        <span class="mandatory"></span>
+                    </div>
+                    <div class="max-HeightWidth">
+                        <app-common-element class="city" validators [type]="notNullValidator" [value]="lead.city"
+                            [(ngModel)]="lead.city" (ngModelChange)="ngModelChange()" required dataUI="text"
+                            name="city" for="city" id="city" ngDefaultControl [formControlNameRef]="clientForm.get('city')">
+                        </app-common-element>
+                        <br>
+                    </div>
+                </div>
+                <div class="clientFormElement height-10 padding-left10">
+                    <div>
+                        <mat-icon class="h-21px">how_to_reg</mat-icon>
+                        <label for="lead source">Lead Source</label>
+                        <span class="mandatory"></span>
+                    </div>
+                    <div class="max-HeightWidth">
+                        <app-common-element dataUI="select" for="leadSource" id="leadSource" name="leadSource"
+                            ngDefaultControl [(ngModel)]="lead.leadSource" [formControlNameRef]="clientForm.get('leadSource')"
+                            (ngModelChange)="ngModelChange()" required [options]='leadSource'></app-common-element>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="clientFormElement padding-1">
+                    <div>
+                        <mat-icon class="h-21px">comment</mat-icon>
+                        <label for="Requirements">Requirements</label>
+                    </div>
+                    <div class="max-HeightWidth">
+                        <app-common-element dataUI="textArea" for="requirements"
+                        class="comments" validators [value]="lead.comments"
+                            [(ngModel)]="lead.comments" for="comments" name="comments" id="comments"
+                            ngDefaultControl [formControlNameRef]="clientForm.get('comments')"></app-common-element>
+                    </div>
+                </div>
+                <div class="clientFormElement padding-1">
+                    <div>
+                        <mat-icon class="h-21px">date_range</mat-icon>
+                        <label for="nextDate">Next Date</label>
+                    </div>
+                    <div class="max-HeightWidth">
+                        <app-common-element dataUI="date" for="nextDate"
+                        class="nextDate" [value]="lead.nextDate" validators
+                            [(ngModel)]="lead.nextDate" name="nextDate" id="nextDate"
+                            ngDefaultControl [formControlNameRef]="clientForm.get('nextDate')"></app-common-element><br>
+                    </div>
+                </div>
+            </div>
+            <div class="float-left width60 m-t-4 m-l-40">
+                <a class="buttonClass blockButton submitButton greenBackground p-2"
+                    (click)="onClick('submit')">Submit</a>
+                <a class="buttonClass blockButton submitButton greenBackground p- m-l-2"
+                    (click)="onClick('submitAndNext')">
+                    <mat-icon class="h-18px">keyboard_arrow_right</mat-icon>
+                </a>
+                <!-- </div> -->
+                <a class="buttonClass  blockButton redBackground p-2 borderRadius-10px m-l-2"
+                    (click)="onClick('cancle')">Reset</a>
+            </div>
+
+        </form>
+    </div>
+</div>
