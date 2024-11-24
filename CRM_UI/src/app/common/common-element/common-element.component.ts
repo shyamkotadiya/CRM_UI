@@ -22,16 +22,20 @@ export class CommonElementComponent implements OnInit, ControlValueAccessor {
   @Input() isRequired: boolean = false;
   @Input() options: Array<any> = [{ id: '', value: '' }];
   @Input() placeholderText: string = '';
-  _formControlNameRef: any;
-  get formControlNameRef() {
-    return this._formControlNameRef as FormControl;
+  formControlNameRef: FormControl;
+  _customFormControl:any
+  get customFormControl() {
+    return this.formControlNameRef as FormControl;
   }
-  @Input() set formControlNameRef(value: any) {
-    this._formControlNameRef = value;
+  @Input() set customFormControl(value: any) {
+    this.formControlNameRef = value;
   }
-  @Output() blurEmitter: EventEmitter<any> = new EventEmitter();;
-  array = [1, 1, 1, 1, 1, 1, 1, 11, 1, 1, 11, 1, 1, 1, 1, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 1, 1];
-  value: string = '';
+
+  @Input() minLength: number = 0;
+  @Input() maxLength: number = Number.MAX_VALUE;
+  @Output() blurEmitter: EventEmitter<any> = new EventEmitter();
+  @Output() ngModelChangeEvent: EventEmitter<any> = new EventEmitter();;
+  // value: string = '';
   text: string = 'Hi';
 
   onChange(_: any) {
@@ -42,7 +46,7 @@ export class CommonElementComponent implements OnInit, ControlValueAccessor {
   }
   constructor(private communicationService: ComponentCommunicationServiceService,
     private eRef: ElementRef) {
-    this.formControlNameRef = this.formControlNameRef as FormControl;
+    this.formControlNameRef = this._customFormControl as FormControl;
   }
 
   @HostListener('document:click', ['$event'])
@@ -56,13 +60,15 @@ export class CommonElementComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  onNgModelChange() {
-    this.onChange(this.value);
+  onNgModelChange(event: any) {
+    // this.onChange(this.value);
+    this.ngModelChangeEvent.emit(event);
   }
 
   writeValue(obj: any): void {
-    this.value = obj;
-    this.onNgModelChange()
+    // this.value = obj;
+    this.formControlNameRef.patchValue(obj);
+    this.onNgModelChange(obj)
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;
@@ -80,9 +86,6 @@ export class CommonElementComponent implements OnInit, ControlValueAccessor {
     if (source === 'onDropdown') {
       if ($('.optionsClass-' + this.for).hasClass("hide")) {
         $('.optionsClass-' + this.for).removeClass('hide');
-
-
-
         $('.upArrow-' + this.for).removeClass('hide');
         $('.downArrow-' + this.for).addClass('hide');
       } else {
@@ -110,16 +113,21 @@ export class CommonElementComponent implements OnInit, ControlValueAccessor {
     $('.downArrow-' + this.for).removeClass('hide');
   }
 
-  geDropdownLabel(value: string) {
-    let temp = _.filter(this.options, { id: value })
-    if (temp && temp.length != 0 && temp[0]) {
-      return temp[0]["value"];
+  geDropdownLabel() {
+    let temp;
+    if(this.formControlNameRef.value) {
+      temp = _.find(this.options, { id: _.get(this.formControlNameRef, 'value', null) });
+    } 
+
+    if (!_.isEmpty(temp)) {
+      return _.get(temp, 'value', " ");
     }
-    return " ";
   }
 
   onOptionSelection(option: any) {
-    this.value = option ? option.id : '';
+    let value = option ? option.id : '';
+    this.formControlNameRef.patchValue(value);
+    this.onNgModelChange(value);
     this.hideDropDown();
   }
 }

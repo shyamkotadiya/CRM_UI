@@ -9,14 +9,14 @@
                 <label for="UserName">UserName</label>
                 <div class="w-65">
                     <app-common-element dataUI="text" for="userName"
-                    [formControlNameRef]="loginForm.get('userName')"></app-common-element><br>
+                    [customFormControl]="loginForm.get('userName')"></app-common-element><br>
                 </div>
             </div>
             <div class="elementDiv">
                 <label for="Password">Password</label>
                 <div class="w-65">
                     <app-common-element dataUI="password" for="password"
-                    [formControlNameRef]="loginForm.get('password')"></app-common-element>
+                    [customFormControl]="loginForm.get('password')"></app-common-element>
                 </div>
             </div>
             <div class="m-t-2 m-l-15">

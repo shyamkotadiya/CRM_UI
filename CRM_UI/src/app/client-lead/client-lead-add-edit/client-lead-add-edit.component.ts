@@ -13,34 +13,8 @@ import { ClientLeadService } from '../client-lead.service';
 
 })
 export class ClientLeadAddEditComponent implements OnInit {
-
-
-  /* @ViewChild('clientForm') */ 
   clientForm: FormGroup;
-  // clientForm!: FormGroup<{
-  //   fname: FormControl<string>;
-  //   lname: FormControl<string>;
-  //   contactNo: FormControl<number>;
-  //   email: FormControl<string>;
-  //   state: FormControl<string>;
-  //   country: FormControl<string>;
-  //   city: FormControl<number>;
-  //   requirements: FormControl<string>;
-  //   comments: FormControl<number>;
-  //   leadSource: FormControl<string>;
-  // }>;
-  // fname = new FormControl();
-  // fname= this.fb.control('', Validators.required);
-  lead = new ClientLead();
-  notNullValidator = {
-    type: "text",
-    operator: 'notNull'
-  };
-
-  numberLimit10 = {
-    type: 'number',
-    limit: 10
-  };
+  // lead = new ClientLead();
 
   countryOptions: Array<any> = [
     { id: '1', value: 'India' },
@@ -48,8 +22,8 @@ export class ClientLeadAddEditComponent implements OnInit {
   ];
 
   stateOptions: Array<any> = [
-    { id: '1', value: 'Gujrat' },
-    { id: '2', value: 'Maharastra' }
+    { id: '1', value: 'Gujarat' },
+    { id: '2', value: 'Maharashtra' }
   ];
 
   leadSource: Array<any> = [
@@ -68,70 +42,55 @@ export class ClientLeadAddEditComponent implements OnInit {
     private router: Router,
     private clientLeadService: ClientLeadService
   ) {
-    this.clientForm = this.initializeForm() as FormGroup;
+    this.clientForm = this.initializeForm();
     this.changeSubmitColor('red');
   }
 
   initializeForm() {
-   /*   return this.fb.group({
-      fname: new FormControl(''),//['', Validators.required],
-      lname: [''],
-      contactNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-      email: [''],
-      state: ['', Validators.required],
-      country: ['', Validators.required],
-      city: ['', Validators.required],
-      requirements: [''],
-      comments: [''],
-      leadSource: ['', Validators.required]
-    }); */
-
-    // this.clientForm.get
     return this.fb.group({
       fname: this.fb.control('', Validators.required),
-      lname: this.fb.control('', Validators.required),
-      contactNo: this.fb.control('', Validators.required),
-      email: this.fb.control('', Validators.required),
+      lname: this.fb.control(''),
+      contactNo: this.fb.control('', Validators.compose([Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')])),
+      email: this.fb.control(''),
       state: this.fb.control('', Validators.required),
       country: this.fb.control('', Validators.required),
       city: this.fb.control('', Validators.required),
-      requirements: this.fb.control('', Validators.required),
-      comments: this.fb.control('', Validators.required),
-      leadSource: this.fb.control('', Validators.required)
+      requirements: this.fb.control(''),
+      comments: this.fb.control(''),
+      leadSource: this.fb.control('', Validators.required),
+      nextDate: this.fb.control('')
     });
   }
 
   ngOnInit(): void {
+    this.changeSubmitColor('red');
   }
 
   onClick(source: string) {
     this.clientForm.getRawValue();
     if (this.clientForm.valid) {
-      console.log(this.lead);
       if (source === 'submit') {
-        this.clientLeadService.save(this.lead).subscribe( (data) => {
+        this.clientLeadService.save(this.clientForm.getRawValue()).subscribe((data) => {
           if (data) {
-            this.toster.success("Client Lead Saved Successfull", 'Saved');
-           }
+            this.toster.success("Client Lead Saved Successful", 'Saved');
+          }
         });
       } else if (source === 'submitAndNext') {
-        this.toster.success("Client Lead Saved Successfull", 'Saved');
-        this.router.navigateByUrl("clientLead/search")
+        this.toster.success("Client Lead Saved Successful", 'Saved');
+        this.router.navigateByUrl("clientLead/search");
       }
     }
-    if (source === 'cancle') {
+    if (source === 'cancel') {
       this.clientForm.reset();
-      this.lead = _.cloneDeep(new ClientLead());
-      this.lead.fname = ''
     }
 
   }
-  ngModelChange() {
-    if (this.clientForm.valid) {
-      this.changeSubmitColor('green');
-    } else {
-      this.changeSubmitColor('red');
-    }
+  onNgModelChange(event: any) {
+    // if (this.clientForm.valid) {
+    //   this.changeSubmitColor('green');
+    // } else {
+    //   this.changeSubmitColor('red');
+    // }
   }
 
 
@@ -143,13 +102,12 @@ export class ClientLeadAddEditComponent implements OnInit {
     }
     else {
       $('.submitButton').prop("disabled", false);
-      $('.submitButton').removeClass('redBackground removePointer').addClass('greenBackground')
-        .addClass('buttonClass').removeClass("removeBoxShodaw");
+      // $('.submitButton').removeClass('redBackground removePointer').addClass('greenBackground')
+      //   .addClass('buttonClass').removeClass("removeBoxShodaw");
     }
   }
 
   blurEmitter(event: any) {
-    console.log(event);
     this.communicationService.dataTransferToComponent({ from: "blurEvent", event: event })
   }
 

@@ -7,28 +7,70 @@
 .dashboardPillar {
     float: left;
     width: 20%;
-    height: 90%;
+    min-height: 90%;
     border: 1px solid black;
     margin: 1%;
     border-radius: 10px;
     text-align: center;
 }
 
-.dashboardPillar hr{
-    border: 1px solid black;
+/* .workArea {
+    margin-top: 1%;
+    min-height: 90%;
+    background-color: white;
+    border-radius: 10px;
+    overflow-x: scroll;
+} */
+
+.dashboardPillar {
+    hr.pending {
+        border: 1px solid black;
+    }
+
+    hr.open {
+        border: 2px solid orange;
+    }
+
+    hr.inProgress {
+        border: 2px solid aqua;
+    }
+
+    hr.complete {
+        border: 2px solid forestgreen;
+    }
 }
 
-.pillarHeader{
-    margin-top: 2%;
+.pillarHeader {
+    padding-top: 2%;
+    text-transform: capitalize;
+    height: 5%;
+    border-radius: 10px;
 }
 
-.pillarBody{
-    height: 100%;
+.pillarHeader.pending {
+    /* background-image: repeating-radial-gradient(closest-side at 60% 55%, white, gray 50%); */
+    background-image: linear-gradient(to bottom, white 40%, gray 170%)
+}
+
+.pillarHeader.open {
+    background-image: linear-gradient(to bottom, white 40%, orange 170%);
+}
+
+.pillarHeader.inProgress {
+    background-image: linear-gradient(to bottom, white 40%, aqua 170%);
+}
+
+.pillarHeader.complete {
+    background-image: linear-gradient(to bottom, white 40%, forestgreen 170%);
+}
+
+.pillarBody {
+    min-height: 100%;
     width: 100%;
 }
 
-.pillarCard{
-    height: 15%;
+.pillarCard {
+    height: 100px;
     width: 80%;
     margin: 10%;
     border: 1px solid black;
@@ -36,7 +78,13 @@
     position: relative;
 }
 
-#div1, #div2 {
+.pillarCard:hover {
+    border-color: #6e41a6;
+    background-color: aliceblue;
+}
+
+#div1,
+#div2 {
     float: left;
     width: 100px;
     height: 35px;
@@ -45,8 +93,42 @@
     border: 1px solid black;
 }
 
-.pillarCardRightArrow{
+.pillarCardRightArrow {
     float: right;
     margin-top: 0px;
     cursor: pointer;
+}
+
+.pillarCardLeftArrow {
+    float: left;
+    margin-top: 0px;
+    cursor: pointer;
+}
+
+.pull-right {
+    float: right;
+}
+
+.margin-right-1 {
+    margin-right: 1%;
+}
+
+.createBtn {
+    border-radius: 20px;
+    background-color: #6e41a6 !important;
+    height: 40%;
+    font-size: 15px;
+    color: white;
+    padding-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+    cursor: pointer;
+}
+
+.headerTitleSection {
+    font-size: larger;
+    font-weight: bold;
+    padding-top: 1.5%;
+    float: left;
+    margin-left: 40%;
 }

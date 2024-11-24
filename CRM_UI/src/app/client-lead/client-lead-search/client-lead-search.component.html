@@ -14,8 +14,8 @@
                 <label for="firstName">First Name</label>
             </div>
             <div class="">
-                <app-common-element class="fname" [(ngModel)]="this.lead.fname" dataUI="text" for="fname" name="fname"
-                    id="fname" ngDefaultControl (ngModelChange)="ngModelChange()">
+                <app-common-element class="fname" [customFormControl]="clientSearchForm.get('fname')" dataUI="text"
+                    for="fname" name="fname" id="fname" (ngModelChange)="onModelChange($event)">
                 </app-common-element><br>
             </div>
         </div>
@@ -25,8 +25,9 @@
                 <label for="contactNo">Contact No</label>
             </div>
             <div class="">
-                <app-common-element class="phoneNo" [(ngModel)]="this.lead.contactNo" dataUI="number" for="contactNo"
-                    id="contactNo" ngDefaultControl name="contactNo" (ngModelChange)="ngModelChange()">
+                <app-common-element class="phoneNo" [customFormControl]="clientSearchForm.get('contactNo')"
+                    dataUI="number" for="contactNo" id="contactNo" name="contactNo"
+                    (ngModelChange)="onModelChange($event)">
                 </app-common-element><br>
             </div>
         </div>
@@ -36,8 +37,8 @@
                 <label for="city">City</label>
             </div>
             <div class="">
-                <app-common-element class="city" [(ngModel)]="this.lead.city" (ngModelChange)="ngModelChange()"
-                    dataUI="text" name="city" for="city" id="city" ngDefaultControl>
+                <app-common-element class="city" [customFormControl]="clientSearchForm.get('city')"
+                    (ngModelChange)="onModelChange($event)" dataUI="text" name="city" for="city" id="city">
                 </app-common-element>
             </div>
         </div>
@@ -47,8 +48,9 @@
                 <label for="leadSource">Lead Source</label>
             </div>
             <div class="">
-                <app-common-element dataUI="select" for="leadSource" id="leadSource" name="leadSource" ngDefaultControl
-                    [(ngModel)]="this.lead.leadSource" (ngModelChange)="ngModelChange()" [options]='leadSource'>
+                <app-common-element dataUI="select" for="leadSource" id="leadSource" name="leadSource"
+                    [customFormControl]="clientSearchForm.get('leadSource')" (ngModelChange)="onModelChange($event)"
+                    [options]='leadSource'>
                 </app-common-element>
 
             </div>
@@ -61,7 +63,9 @@
                 <label for="UserName">Next Date</label>
             </div>
             <div class="">
-                <app-common-element dataUI="date" for="nextDate"></app-common-element><br>
+                <app-common-element dataUI="date" for="nextDate" id="nextDate" name="nextDate"
+                    [customFormControl]="clientSearchForm.get('nextDate')"
+                    (ngModelChange)="onModelChange($event)"></app-common-element><br>
             </div>
         </div>
         <div class="m-l-93 m-t-11_5">
@@ -70,7 +74,8 @@
     </div>
     <div class="workArea searchScreen">
         <div class="quickSearchSection">
-            <app-common-element placeholderText="Quick Search..." dataUI="text" for="quickSearch" [(ngModel)]="quickSearch"></app-common-element>
+            <app-common-element placeholderText="Quick Search..." dataUI="text" for="quickSearch"
+                [customFormControl]="quickSearch" (ngModelChangeEvent)="onModelChange($event)"></app-common-element>
         </div>
         <div>
             <table class="tableClass">

@@ -1,44 +1,34 @@
 <div class="withLeftSide">
     <div class="headerSection">
         <div class="headerTitleSection">Client Communication Dashboard</div>
+        <div class="pull-right margin-right-1 m-t-2 createBtn" (click)="createTask()">
+          Create Task
+        </div>
     </div>
     <div class="workArea">
         <div class="dashboardSpace">
-            <!--     <div class="dashboardPillar">
-                <div class="pillarHeader">
-                    <label>Open</label>
+            <div *ngFor="let taskMap of tasksByStatusMap | keyvalue:originalOrder ;
+            let parentIndex = index;let first = first;let last = last" class="dashboardPillar">
+                <div class="pillarHeader {{taskMap.key}}">
+                    <label>{{taskMap.key}}</label>
                 </div>
-                <hr>
-            </div>
-            <div class="dashboardPillar">
-                <div class="pillarHeader">
-                    <label>In-Progress</label>
-                </div>
-                <hr>
-            </div>
-            <div class="dashboardPillar">
-                <div class="pillarHeader">
-                    <label>Done</label>
-                </div>
-                <hr>
-            </div> -->
-            <!-- <ng-component *ngFor="let i of tempArray"> -->
-            <div *ngFor="let i of tempArray;let perI = index" class="dashboardPillar">
-                <div class="pillarHeader">
-                    <label>{{i}}-</label>
-                </div>
-                <hr>
                 <div class="pillarBody">
-                    <div class="pillarCard pillarCard{{perI}} pillarCard{{perI}}{{childI}}"
-                        *ngFor="let i of tempArray;let childI = index">
-                        <div (click)="changePosition()" class="pillarCardRightArrow">
-                            <mat-icon>arrow_right_alt</mat-icon>
+                    <div class="pillarCard pillarCard{{parentIndex}} pillarCard{{parentIndex}}{{childIndex}}"
+                        *ngFor="let task of taskMap.value;let childIndex = index;">
+                        <div *ngIf="!last" (click)="changePosition('next', taskMap.key, childIndex)"
+                            class="pillarCardRightArrow">
+                            <mat-icon>arrow_forward</mat-icon>
                         </div>
-                        1{{perI}}{{childI}}
+                        <div *ngIf="!first" (click)="changePosition('previous', taskMap.key, childIndex)"
+                            class="pillarCardLeftArrow">
+                            <mat-icon>arrow_back</mat-icon>
+                        </div>
+                        {{task.title}}<br>
+                        <p><u>Project</u>:&nbsp;{{task.project}}</p>
                     </div>
                 </div>
             </div>
-            <!-- </ng-component> -->
+
         </div>
     </div>
 </div>

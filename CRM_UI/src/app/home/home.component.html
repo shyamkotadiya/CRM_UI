@@ -3,25 +3,13 @@
         <div class="headerTitleSection">Customer Relationship Management</div>
         <div>
             <mat-icon></mat-icon>
-        </div>
+        </div> 
     </div>
     <div class="">
-        <div class="menuItem">
-            <div class="menuHeader" (mousewheel)="expandSection('clientLead')" >Client Lead</div>
-            <div class="menuLinks">
-                <a href="javascript:void(0)" (click)="onLinkClick('createClientLead')">Create Client Lead</a>
-            </div>
-            <div class="menuLinks">
-                <a href="javascript:void(0)" (click)="onLinkClick('searchClientLead')">Search Client Lead</a>
-            </div>
-        </div>
-        <div class="menuItem">
-            <div class="menuHeader">Dashboard</div>
-            <div class="menuLinks">
-                <a href="javascript:void(0)" (click)="onLinkClick('clientDashboard')">Client Communication Dashboard</a>
-            </div>
-            <div class="menuLinks">
-                <a href="javascript:void(0)">Design Dashboard</a>
+        <div class="menuItem" *ngFor="let menu of menuConfiguration">
+            <div class="menuHeader">{{menu.menuName}}</div>
+            <div class="menuLinks" *ngFor="let subMenu of menu.subMenu" (click)="onLinkClick(subMenu)">
+                <a href="javascript:void(0)" >{{subMenu.menuName}}</a>
             </div>
         </div>
     </div>

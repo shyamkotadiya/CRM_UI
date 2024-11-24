@@ -1,6 +1,8 @@
 import { KeyValuePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ClientLead } from '../../common/beanClass';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-lead-search',
@@ -10,6 +12,7 @@ import { ClientLead } from '../../common/beanClass';
 export class ClientLeadSearchComponent implements OnInit {
 
   grid: Array<any> = [{}];
+  gridResponse: Array<any> = [{}];
   lead = new ClientLead();
   leadSource: Array<any> = [
     { id: 1, value: 'Reference' },
@@ -21,13 +24,26 @@ export class ClientLeadSearchComponent implements OnInit {
     { id: 7, value: 'Banner && Printing' },
   ];
 
-  quickSearch = ''
-  constructor(/* private keyValue:KeyValuePipe */) { }
+  quickSearch = new FormControl('');
+  clientSearchForm: FormGroup;
+  constructor(private fb: FormBuilder,
+    private router: Router) {
+    this.clientSearchForm = this.initializeForm();
+  }
+  initializeForm() {
+    return this.fb.group({
+      fname: this.fb.control(''),
+      contactNo: this.fb.control(''),
+      city: this.fb.control(''),
+      leadSource: this.fb.control(''),
+      nextDate: this.fb.control('')
+    });
+  }
 
   ngOnInit(): void {
 
 
-    this.grid = [
+    this.gridResponse = [
       {
         id: 1,
         firstName: "Shyam",
@@ -80,6 +96,7 @@ export class ClientLeadSearchComponent implements OnInit {
       },
     ];
 
+    this.grid = this.gridResponse;
     // this.hideBlankSearchCriteria('hide');
     this.onCloseSection();
 
@@ -101,7 +118,7 @@ export class ClientLeadSearchComponent implements OnInit {
 
   onActionClick(source: string) {
     if (source === 'edit') {
-
+      this.router.navigateByUrl("clientLead/search");
     } else if (source === 'delete') {
 
     } else if ('blackCriteriaClick') {
@@ -113,8 +130,25 @@ export class ClientLeadSearchComponent implements OnInit {
     }
   }
 
-  ngModelChange() {
+  onModelChange(event: any) {
+    this.searchByQuickSearch(event);
+  }
 
+  searchByQuickSearch(event: any) {
+    if (event) {
+      let searchStr = event.toLowerCase()
+      this.grid = [];
+      this.gridResponse.forEach((data: any) => {
+        if (data.firstName.toLowerCase().includes(searchStr) || data.lastName.toLowerCase().includes(searchStr)
+          || data.contactNumber.toLowerCase().includes(searchStr) || data.city.toLowerCase().includes(searchStr)
+          || data.leadSource.toLowerCase().includes(searchStr) || data.nextDate.toLowerCase().includes(searchStr)
+          || data.requirements.toLowerCase().includes(searchStr)) {
+          this.grid.push(data);
+        }
+      })
+    } else {
+      this.grid = this.gridResponse;
+    }
   }
 
   onCloseSection() {

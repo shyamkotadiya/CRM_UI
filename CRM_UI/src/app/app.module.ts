@@ -22,6 +22,12 @@ import { ValidatorsDirective } from './common/validators.directive';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NevBarComponent } from './nev-bar/nev-bar.component';
+import { TaskAddEditComponent } from './task/task-add-edit/task-add-edit.component';
+import { TaskSearchComponent } from './task/task-search/task-search.component';
+import { ProjectAddEditComponent } from './project/project-add-edit/project-add-edit.component';
+import { ProjectSearchComponent } from './project/project-search/project-search.component';
+import { ClientAddEditComponent } from './client/client-add-edit/client-add-edit.component';
+import { ClientSearchComponent } from './client/client-search/client-search.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +40,13 @@ import { NevBarComponent } from './nev-bar/nev-bar.component';
     HomeComponent,
     ValidatorsDirective,
     ClientLeadSearchComponent,
-    CommonGridComponent
+    CommonGridComponent,
+    TaskAddEditComponent,
+    TaskSearchComponent,
+    ProjectAddEditComponent,
+    ProjectSearchComponent,
+    ClientAddEditComponent,
+    ClientSearchComponent
   ],
   imports: [
     BrowserModule,

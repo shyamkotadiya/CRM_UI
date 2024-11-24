@@ -2,30 +2,22 @@ html,
 body {
     background-color: #e4e3e8;
     height: 99%;
-    width: 99%;
+    width: 100%;
     font-family: 'Trebuchet MS', sans-serif !important;
     user-select: none;
+    overflow: hidden;
 }
 
 .withLeftSide {
-    margin-left: 16.4%;
-    height: 98%;
-    width: 85%;
+    margin-left: 10.2%;
+    height: 100%;
+    width: 90%;
     margin-top: 2px;
     padding-top: 2px;
+    overflow: hidden;
 }
 
-.navMenu {
-    margin-left: 2px;
-    margin-top: 2px;
-    border-radius: 10px 10px 10px 10px;
-    height: 98%;
-    width: 15%;
-    background-color: #6e41a6;
-    clear: right;
-    position: fixed;
-    box-shadow: 5px 0px rgba(5, 5, 5, 0.35);
-}
+
 
 .navMenuItem {
     width: 90%;
@@ -48,6 +40,13 @@ body {
     padding-left: 2%;
 }
 
+.subMenuNavMenuLink{
+    float: left;
+    padding-top: 2%;
+    padding-left: 2%;
+    padding-bottom: 6%
+}
+
 .navMenuItem a:link {
     color: white;
     text-decoration: none;
@@ -61,25 +60,7 @@ body {
 .navMenuSection {
     margin-left: 5%;
 }
-.navLogo {
-    display: inline-block;
-    width: 75%;
-    height: 17%;
-    margin-left: 6%;
-    margin-top: 10%;
-    background-image: url("./navLogo.PNG");
-    font-size: xxx-large;
-    background-size: cover;
-    background-repeat: no-repeat;
-    border-radius: 100px;
-    animation: rotation 3s 1 linear;
 
-    /* display: inline-block;
-    margin-top: 13%;
-    margin-left: 18%;
-    color: white;
-    font-weight: bolder */
-}
 
 @keyframes rotation {
     from {
@@ -280,6 +261,7 @@ select {
     background-color: white;
     border-radius: 10px;
     height: 10%;
+    width: 99%;
     /* align-items: center; */
     text-align: center;
 }
@@ -292,9 +274,12 @@ select {
 
 .workArea {
     margin-top: 1%;
-    height: 90%;
+    height: 88%;
+    width: 99%;
     background-color: white;
     border-radius: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .menuItem {
@@ -350,15 +335,15 @@ select {
     width: auto;
 }
 
-.workArea {
+/* .workArea {
     background-color: white;
     border-radius: 10px;
     margin-top: 1%;
-    width: 100%;
+    width: 99%;
     height: 90%;
-}
+} */
 
-.clientFormElement {
+.formElement {
     width: 30%;
     padding: 2%;
     padding-left: 10%;
@@ -537,6 +522,12 @@ label {
 .redBorder {
     transition: border 0s ease-out;
     border-color: red;
+    border-width: medium
+}
+
+.greenBorder {
+    transition: border 0s ease-out;
+    border-color: green;
     border-width: medium
 }
 

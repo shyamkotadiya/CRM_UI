@@ -1,0 +1,34 @@
+<div class="withLeftSide">
+    <div class="headerSection">
+        <div class="headerTitleSection">Search Client</div>
+    </div>
+    <div class="workArea searchScreen">
+        <div class="quickSearchSection">
+            <app-common-element placeholderText="Quick Search..." dataUI="text" for="quickSearch"
+                [customFormControl]="quickSearch" (ngModelChangeEvent)="onModelChange($event)"></app-common-element>
+        </div>
+        <div>
+            <table class="tableClass">
+                <thead>
+                    <tr class="gridHeader">
+                        <th>Client Name</th>
+                        <th>Email</th>
+                        <th>Contact No</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="gridRow" *ngFor="let item of grid">
+                        <td>{{item.clientName}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.contactNo}}</td>
+                        <td>
+                            <mat-icon class="tableActionButtons" (click)="onActionClick('edit')">edit</mat-icon>&nbsp;
+                            <mat-icon class="tableActionButtons" (click)="onActionClick('delete')">delete</mat-icon>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

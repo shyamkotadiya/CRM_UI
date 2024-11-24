@@ -1,37 +1,38 @@
 <span *ngIf="dataUI ==='password'">
     <input class="elementClass" type="password" id="{{for}}" name="password" (blur)="onBlur($event)" 
-        (ngModelChange)="onNgModelChange()" [formControl]="formControlNameRef" validators>
+        (ngModelChange)="onNgModelChange($event)" [formControl]="formControlNameRef" validators>
 </span>
 
 <span *ngIf="dataUI ==='text'">
     <input type="text" class="elementClass" id="{{for}}" name="{{for}}" validators (blur)="onBlur($event)" 
-        (ngModelChange)="onNgModelChange()" placeholder="{{placeholderText}}" [formControl]="formControlNameRef">
+        (ngModelChange)="onNgModelChange($event)" placeholder="{{placeholderText}}" [formControl]="formControlNameRef">
 </span>
 
 <span *ngIf="dataUI ==='number'">
     <input type="number" class="elementClass" name="{{for}}" name="{{for}}" (blur)="onBlur($event)" 
-        (ngModelChange)="onNgModelChange()" [formControl]="formControlNameRef" validators>
+        (ngModelChange)="onNgModelChange($event)" [formControl]="formControlNameRef" validators>
 </span>
 
 <span *ngIf="dataUI ==='textArea'">
     <textarea class="elementClassTextArea" name="{{for}}" 
-        (ngModelChange)="onNgModelChange()" [formControl]="formControlNameRef"></textarea>
+        (ngModelChange)="onNgModelChange($event)" [formControl]="formControlNameRef"></textarea>
 </span>
 
 
 <span *ngIf="dataUI ==='select'">
     <div class="dropdownBox" (click)="onClick('onDropdown')">
-        <input type="text" value="&nbsp;{{this.geDropdownLabel(value)}}" name="{{for}}" id="{{for}}">
-        <input type="text" hidden  name="{{for}}" id="{{for}}" [formControl]="formControlNameRef">
-        <mat-icon class="h-21px pull-right arrowClass  downArrow downArrow-{{for}}">keyboard_arrow_down</mat-icon>
+        <input type="text" value="&nbsp;{{this.geDropdownLabel()}}" name="{{for}}" id="{{for}}">
+        <input type="text" hidden  name="{{for}}" id="{{for}}">
+        <mat-icon class="h-21px pull-right arrowClass downArrow downArrow-{{for}}">keyboard_arrow_down</mat-icon>
         <mat-icon class="h-21px pull-right arrowClass upArrow upArrow-{{for}} hide">keyboard_arrow_up</mat-icon>
     </div>
+    
     <div class="dd optionsClass optionsClass-{{for}} transitionClass hide">
-        <div *ngFor="let option of options" class="optionClass" [ngClass]="option.id === value ? 'boldClass highlightColor' :'' " (click)="onOptionSelection(option)"
-            ><mat-icon class="optionTickClass" *ngIf="option.id === value">check</mat-icon> {{option.value}}</div>
+        <div *ngFor="let option of options" class="optionClass" [ngClass]="option.id === formControlNameRef.value ? 'boldClass highlightColor' :'' " (click)="onOptionSelection(option)"
+            ><mat-icon class="optionTickClass" *ngIf="option.id === formControlNameRef?.value">check</mat-icon> {{option.value}}</div>
     </div>
 
-    <!-- <select  (ngModelChange)="onNgModelChange()">
+    <!-- <select  (ngModelChange)="onNgModelChange($event)">
         <option *ngFor="let option of options;let j=index" value="{{option.id}}">{{option.value}}</option>
     </select> -->
 </span>

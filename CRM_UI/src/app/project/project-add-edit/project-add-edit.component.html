@@ -1,0 +1,71 @@
+<div class="withLeftSide">
+    <div class="headerSection">
+        <div class="headerTitleSection">Project</div>
+    </div>
+
+    <div class="workArea">
+        <form [formGroup]="projectForm" class="formSection">
+            <div class="row">
+                <div class="formElement">
+                    <div>
+                        <mat-icon class="h-21px">person</mat-icon>
+                        <label for="UserName">Client Name</label>
+                        <span class="mandatory"></span>
+                    </div>
+                    <div class="max-HeightWidth">
+                        <app-common-element class="client" dataUI="text" for="clientName" required name="clientName"
+                            id="clientName" [customFormControl]="projectForm.get('clientName')">
+                        </app-common-element><br>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="formElement">
+                    <div>
+                        <mat-icon class="h-21px">folder</mat-icon>
+                        <label for="LastName">Project Title</label>
+                        <span class="mandatory"></span>
+                    </div>
+                    <div class="max-HeightWidth">
+                        <app-common-element class="projectTitle" dataUI="text" for="projectTitle" id="projectTitle"
+                            name="projectTitle" [customFormControl]="projectForm.get('projectTitle')">
+                        </app-common-element><br>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="formElement padding-1">
+                    <div>
+                        <mat-icon class="h-21px">date_range</mat-icon>
+                        <label for="nextDate">Start Date</label>
+                    </div>
+                    <div class="max-HeightWidth">
+                        <app-common-element dataUI="date" for="startDate" class="startDate" name="startDate"
+                            id="startDate" [customFormControl]="projectForm.get('startDate')"></app-common-element><br>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="formElement padding-1 height-12">
+                    <div>
+                        <mat-icon class="h-21px">comment</mat-icon>
+                        <label for="Requirements">Project Description</label>
+                    </div>
+                    <div class="max-HeightWidth">
+                        <app-common-element dataUI="textArea" for="projectDescription" class="comments" for="comments"
+                            name="projectDescription" id="projectDescription"
+                            [customFormControl]="projectForm.get('projectDescription')"></app-common-element>
+                    </div>
+                </div>
+            </div>
+            <div class="float-left width60 m-t-4 m-l-40">
+                <a class="buttonClass submitButton removeBoxShodaw blockButton p-2"
+                 [ngClass]="{'greenBackground buttonClass': projectForm.valid,
+                                'redBackground removePointer': !projectForm.valid }"
+                    (click)="onClick('submit')">Submit</a>
+                <a class="buttonClass  blockButton redBackground p-2 borderRadius-10px m-l-2"
+                    (click)="onClick('cancel')">Reset</a>
+            </div>
+        </form>
+    </div>
+</div>

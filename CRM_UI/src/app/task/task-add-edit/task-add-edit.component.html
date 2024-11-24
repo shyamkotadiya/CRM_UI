@@ -1,0 +1,76 @@
+<div class="withLeftSide">
+    <div class="headerSection">
+        <div class="headerTitleSection">Create Task</div>
+    </div>
+    <div class="workArea">
+        <form [formGroup]="taskForm" class="formSection">
+            <div class="row">
+                <div class="formElement">
+                    <div>
+                        <mat-icon class="h-21px">folder</mat-icon>
+                        <label for="UserName">Project</label>
+                        <span class="mandatory"></span>
+                    </div>
+                    <div class="max-HeightWidth">
+                        <app-common-element class="project" dataUI="text" for="project" required 
+                        name="project" id="project" ngDefaultControl [customFormControl]="taskForm.get('project')"
+                            (ngModelChangeEvent)="onNgModelChange($event)">
+                        </app-common-element><br>
+                    </div>
+                </div>
+                <div class="formElement">
+                    <div>
+                        <mat-icon class="h-21px">description</mat-icon>
+                        <label for="Title">Title</label>
+                    </div>
+                    <div class="max-HeightWidth">
+                        <app-common-element class="title" dataUI="text" for="title" id="title" name="title"
+                            id="title" [customFormControl]="taskForm.get('title')" (ngModelChangeEvent)="onNgModelChange($event)">
+                        </app-common-element><br>
+                    </div>
+                </div>
+                </div>
+                <div class="formElement height-10 padding-left10">
+                    <div>
+                        <mat-icon class="h-21px">how_to_reg</mat-icon>
+                        <label for="status">Status</label>
+                        <span class="mandatory"></span>
+                    </div>
+                    <div class="max-HeightWidth">
+                        <app-common-element dataUI="select" for="status" id="status" name="status"
+                            [customFormControl]="taskForm.get('status')" (ngModelChangeEvent)="onNgModelChange($event)"
+                            [options]='statusOption'></app-common-element>
+                    </div>
+                </div>
+                <div class="formElement height-10 padding-left10">
+                    <div>
+                        <mat-icon class="h-21px">priority_high</mat-icon>
+                        <label for="status">Priority</label>
+                        <span class="mandatory"></span>
+                    </div>
+                    <div class="max-HeightWidth">
+                        <app-common-element dataUI="select" for="priority" id="priority" name="priority"
+                            [customFormControl]="taskForm.get('priority')" (ngModelChangeEvent)="onNgModelChange($event)"
+                            [options]='priorityOption'></app-common-element>
+                    </div>
+                </div>
+                <div class="formElement padding-1">
+                    <div>
+                        <mat-icon class="h-21px">comment</mat-icon>
+                        <label for="Requirements">Description</label>
+                    </div>
+                    <div class="max-HeightWidth">
+                        <app-common-element dataUI="textArea" for="description" class="description" for="description"
+                            name="description" id="description" (ngModelChangeEvent)="onNgModelChange($event)"
+                             [customFormControl]="taskForm.get('description')"></app-common-element>
+                    </div>
+                </div>
+                <div class="float-left width60 m-t-4 m-l-40">
+                    <a class="buttonClass blockButton submitButton greenBackground p-2"
+                        (click)="onClick('submit')">Submit</a>
+                    <a class="buttonClass  blockButton redBackground p-2 borderRadius-10px m-l-2"
+                        (click)="onClick('cancel')">Cancel</a>
+                </div>
+        </form>
+    </div>
+</div>

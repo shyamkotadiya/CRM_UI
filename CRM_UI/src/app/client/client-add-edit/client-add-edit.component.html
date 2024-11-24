@@ -1,0 +1,60 @@
+<div class="withLeftSide">
+    <div class="headerSection">
+        <div class="headerTitleSection">Create Client</div>
+    </div>
+    <div class="workArea">
+        <form [formGroup]="clientForm" class="formSection">
+            <div class="row">
+                <div class="formElement">
+                    <div>
+                        <mat-icon class="h-21px">person</mat-icon>
+                        <label for="UserName">Client Name</label>
+                        <span class="mandatory"></span>
+                    </div>
+                    <div class="max-HeightWidth">
+                        <app-common-element class="client" dataUI="text" for="clientName" required name="clientName"
+                            id="clientName" [customFormControl]="clientForm.get('clientName')">
+                        </app-common-element><br>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="formElement">
+                    <div>
+                        <mat-icon class="h-21px">email</mat-icon>
+                        <label for="UserName">Email</label>
+                        <span class="mandatory"></span>
+                    </div>
+                    <div class="max-HeightWidth">
+                        <app-common-element class="client" dataUI="text" for="email" required name="email"
+                            id="email" [customFormControl]="clientForm.get('email')">
+                        </app-common-element><br>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="formElement">
+                    <div>
+                        <mat-icon class="h-21px">phone</mat-icon>
+                        <label for="UserName">Mobile No</label>
+                        <span class="mandatory"></span>
+                    </div>
+                    <div class="max-HeightWidth">
+                        <app-common-element class="client" dataUI="number" for="contactNo" required name="contactNo"
+                            id="contactNo" [customFormControl]="clientForm.get('contactNo')"
+                            [minLength]="0" [maxLength]="10">
+                        </app-common-element><br>
+                    </div>
+                </div>
+            </div>
+            <div class="float-left width60 m-t-4 m-l-40">
+                <a class="buttonClass submitButton removeBoxShodaw blockButton p-2"
+                 [ngClass]="{'greenBackground buttonClass': clientForm.valid,
+                                'redBackground removePointer': !clientForm.valid }"
+                    (click)="onClick('submit')">Submit</a>
+                <a class="buttonClass  blockButton redBackground p-2 borderRadius-10px m-l-2"
+                    (click)="onClick('cancel')">Reset</a>
+            </div>
+        </form>
+    </div>
+</div>
