@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+    tools {
+        nodejs 'NodeJS_16_17_1' 
+    }
+
+    stages {
+        
+        stage('Dependency for CRM_UI') {
+
+            steps {
+                echo 'Building the CRM_UI application...'
+                sh 'cd CRM_UI && ls'
+                sh 'cd CRM_UI && npm install'
+            }
+        }
+
+        stage('Build CRM_UI') {
+
+            steps {
+                sh 'cd CRM_UI && npm run build'
+            }
+        }
+    }
+}
